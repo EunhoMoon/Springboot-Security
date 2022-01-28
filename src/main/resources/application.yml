@@ -1,0 +1,50 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      
+spring:
+  datasource:
+  # MariaDB
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/security?serverTimezone=Asia/Seoul
+    # MySQL
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/security?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+    
+  # 생략 가능(mustach에서 자동으로 잡힘)
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .mustache
+
+  jpa:
+    hibernate:
+      ddl-auto: update #create update none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 145566263579-s0buf9ddrjpd8tru72np9ra8tn260reh.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+            - email
+            - profile
+            
+          facebook:
+            client-id: 310524201090882
+            client-secret: 4b7b4501e8ff244e7069c2df8e5de026
+            scope:
+            - email
+            - public_profile
